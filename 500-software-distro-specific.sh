@@ -84,6 +84,10 @@ hardcode-fixer-git
 waybar
 xwayland
 bemenu
+wofi
+geany
+arcolinux-geany-git
+pragha
 )
 
 count=0

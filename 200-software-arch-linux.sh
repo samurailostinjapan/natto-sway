@@ -70,7 +70,7 @@ done
 func_category Development
 
 list=(
-atom
+#atom
 meld
 sublime-text-dev
 )
@@ -87,9 +87,9 @@ done
 func_category Graphics
 
 list=(
-gimp
+#gimp
 inkscape
-nomacs
+#nomacs
 )
 
 count=0
@@ -104,7 +104,7 @@ done
 func_category Internet
 
 list=(
-chromium
+#chromium
 qbittorrent
 )
 
@@ -120,7 +120,7 @@ done
 func_category Multimedia
 
 list=(
-vlc
+#vlc
 )
 
 count=0

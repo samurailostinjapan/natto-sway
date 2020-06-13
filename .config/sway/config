@@ -18,11 +18,6 @@ set $right l
 set $term termite
 
 # Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-#set $menu dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
-#set $menu dmenu_path | dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14' | xargs swaymsg exec --
-
 #set $menu dmenu_path | bemenu | xargs swaymsg exec --
 set $menu dmenu_path | wofi --dmenu | xargs swaymsg exec --
 
@@ -100,7 +95,7 @@ exec_always {
     bindsym Ctrl+Alt+t exec $term
     
     # Xwayland Support
-	xwayland enable
+	#xwayland enable
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -205,81 +200,51 @@ exec_always {
     bindsym $mod+Tab workspace next
     bindsym $mod+Shift+Tab workspace prev
 
-# USER APPLICATIONS TO START AT BOOT
+#Windows
+for_window [title="arcolinux-welcome-app.desktop"] floating enable
+for_window [title="arcolinux-welcome-app.desktop"] resize set 600 400
+for_window [title="arcolinux-welcome-app.desktop"] position center
 
+
+# Autostart
 # ArcoLinux Welcome App
 exec --no-startup-id dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
+exec spotify
+exec discord
+exec telegram
+exec --no-startup-id mako
 
 
-
-
-
-
-#
 # Applications
-#
+# Firefox
+bindsym $mod+F1 exec firefox
 
-#################################################################
-# KEYBOARD BINDINGS FOR ANY TWM
-#################################################################
-
-# Vivaldi
-bindsym mod$+F1 exec vivaldi 
-
-# Atom
-bindsym mod$+F2 exec atom
+# Geany
+bindsym $mod+F2 exec geamu
 
 #Inkscape
-bindsym mod$+F3 exec inkscape
-
-#Gimp
-bindsym mod$+F4 exec gimp
+bindsym $mod+F3 exec inkscape
 
 #Meld
-bindsym mod$+F5 exec meld
-
-#Vlc
-bindsym mod$+F6 exec vlc --video-on-top
+bindsym $mod+F5 exec meld
 
 #Virtualbox
-bindsym mod$+F7 exec virtualbox
+bindsym $mod+F7 exec virtualbox
 
 #Thunar
-bindsym mod$+F8 exec thunar
+bindsym $mod+F8 exec thunar
 
 #Evolution
-bindsym mod$+F9 exec evolution
-
-#Spotify
-bindsym mod$+F10 exec spotify
-
-#Atom
-bindsym mod$+e exec atom
-
-#Browser
-bindsym mod$+w exec vivaldi-stable
-
-#Htop
-bindsym mod$+h exec termite 'htop task manager' -e htop
-
-#Termite
-bindsym mod$+t exec termite
+bindsym $mod+F9 exec evolution
 
 #Pavucontrol
-bindsym mod$+v exec pavucontrol
+bindsym $mod+m exec --no-startup-id pavucontrol
 
 #Pragha
-bindsym mod$+m exec pragha
-
-#Termite
-bindsym mod$+return exec termite
-
-#Keyboard dependent
-#termite
-bindsym mod$+KP_Enter exec xfce-terminal
+bindsym $mod+m exec pragha
 
 #File-Manager
-bindsym mod$+shift+Return exec thunar
+bindsym $mod+shift+Return exec thunar
 
 #arcolinux-welcome-app
 bindsym ctrl+alt+w exec arcolinux-welcome-app
@@ -292,12 +257,6 @@ bindsym ctrl+alt+b exec thunar
      
 #Catfish
 bindsym ctrl+alt+c exec catfish
-
-#Chromium
-bindsym ctrl+alt+g exec chromium -no-default-browser-check
-
-#Evolution
-bindsym ctrl+alt+e exec evolution
 
 #Firefox
 bindsym ctrl+alt+f exec firefox
@@ -312,16 +271,10 @@ bindsym ctrl+alt+m exec xfce4-settings-manager
 bindsym ctrl+alt+u exec pavucontrol
 
 #Spotify
-bindsym ctrl+alt+s exec spotify
+#bindsym ctrl+alt+s exec spotify
 
 #Termite
 bindsym ctrl+alt+Return exec termite
-
-#termite
-bindsym ctrl+alt+t exec termite
-
-#Vivaldi
-bindsym ctrl+alt+v exec vivaldi-stable
 
 #Xfce4-appfinder
 bindsym ctrl+alt+a exec xfce4-appfinder
@@ -350,9 +303,6 @@ bindsym alt+Up exec variety --toggle-pause
 #Wallpaper resume
 bindsym alt+Down exec variety --resume
 
-#Gmrun
-bindsym alt+F2 exec gmrun
-
 #Xfce4-appfinder
 bindsym alt+F3 exec xfce4-appfinder
 
@@ -361,9 +311,6 @@ bindsym F12 exec xfce4-terminal --drop-down
 
 #Screenshot
 bindsym $mod+Shift+s exec grim ~/Pictures/$(date '+%Y-%m-%d-%T')-screenshot.png
-
-bindsym Ctrl+Alt+e exec --no-startup-id arcolinux-tweak-tool
-bindsym Ctrl+Alt+w exec --no-startup-id arcolinux-welcome-app
 
 
 #
