@@ -241,7 +241,7 @@ bindsym $mod+F9 exec evolution
 bindsym $mod+m exec --no-startup-id pavucontrol
 
 #Pragha
-bindsym $mod+m exec pragha
+bindsym $mod+c exec pragha
 
 #File-Manager
 bindsym $mod+shift+Return exec thunar
