@@ -83,6 +83,7 @@ xfce4-terminal
 hardcode-fixer-git
 waybar
 xwayland
+bemenu
 )
 
 count=0
