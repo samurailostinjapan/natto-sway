@@ -1,0 +1,20 @@
+
+# Autostart
+exec --no-startup-id dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
+#exec spotify &
+exec discord &
+#exec telegram &
+#exec mako &
+#exec variety &
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec autotiling
+#exec numlockx on &
+exec pamac-tray-applet &
+#exec blueberry &
+exec blueman-applet &
+#exec xfce4-power-manager &
+exec volumeicon-applet &
+exec nm-applet --indicator &
+exec picom -b --config ~/.config/sway/picom.conf &
+#--no-startup-id
+

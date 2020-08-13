@@ -5,34 +5,31 @@
 # Read `man 5 sway` for a complete reference.
 
 ### Variables
+#
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-
 # Your preferred terminal emulator
-set $term termite
-
+set $term alacritty
 # Your preferred application launcher
-#set $menu dmenu_path | bemenu | xargs swaymsg exec --
-set $menu dmenu_path | wofi --dmenu | xargs swaymsg exec --
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg fill
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-
-#output VGA-1 resolution 1920x1080 position 1920,0
 
 ### Idle configuration
 #
@@ -62,47 +59,17 @@ output * bg /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-#Keyboard
-	input * xkb_layout "us" 
-
-# Remove all borders from applications
-	default_border none
-
-# Establish gaps between windows and from the screen edge  
-	#gaps outer 5
-	#gaps inner 10
-	smart_gaps off
-	smart_borders on
-	default_border pixel 2
-	#hide_edge_borders both
-
-#GTK Theme
-set $gnome-schema org.gnome.desktop.interface
-
-exec_always {
-	gsettings set $gnome-schema gtk-theme 'Arc-Dark'
-	gsettings set $gnome-schema icon-theme 'Surfn-Arc'
-	gsettings set $gnome-schema cursor-theme 'Bibata_Ice'
-}
-
 ### Key bindings
-#w
+#
 # Basics:
 #
-    # Start a terminalz
+    # Start a terminal
     bindsym $mod+Return exec $term
-    bindsym $mod+t exec $term
-    bindsym Ctrl+Alt+t exec $term
-    
-    # Xwayland Support
-	#xwayland enable
 
     # Kill focused window
     bindsym $mod+Shift+q kill
-    bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+Shift+d exec $menu
     bindsym $mod+d exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
@@ -113,11 +80,10 @@ exec_always {
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+r reload
+    bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e arcolinux-logout 
-    bindsym $mod+x exec arcolinux-logout
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -156,7 +122,6 @@ exec_always {
     bindsym $mod+8 workspace 8
     bindsym $mod+9 workspace 9
     bindsym $mod+0 workspace 10
-
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace 1
     bindsym $mod+Shift+2 move container to workspace 2
@@ -195,127 +160,9 @@ exec_always {
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
-
-    #Moving between workspaces
-    bindsym $mod+Tab workspace next
-    bindsym $mod+Shift+Tab workspace prev
-
-#Windows
-for_window [title="arcolinux-welcome-app.desktop"] floating enable
-for_window [title="arcolinux-welcome-app.desktop"] resize set 600 400
-for_window [title="arcolinux-welcome-app.desktop"] position center
-
-
-# Autostart
-# ArcoLinux Welcome App
-exec --no-startup-id dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
-exec spotify
-exec discord
-exec telegram
-exec --no-startup-id mako
-
-
-# Applications
-# Firefox
-bindsym $mod+F1 exec firefox
-
-# Geany
-bindsym $mod+F2 exec geamu
-
-#Inkscape
-bindsym $mod+F3 exec inkscape
-
-#Meld
-bindsym $mod+F5 exec meld
-
-#Virtualbox
-bindsym $mod+F7 exec virtualbox
-
-#Thunar
-bindsym $mod+F8 exec thunar
-
-#Evolution
-bindsym $mod+F9 exec evolution
-
-#Pavucontrol
-bindsym $mod+m exec --no-startup-id pavucontrol
-
-#Pragha
-bindsym $mod+c exec pragha
-
-#File-Manager
-bindsym $mod+shift+Return exec thunar
-
-#arcolinux-welcome-app
-bindsym ctrl+alt+w exec arcolinux-welcome-app
-
-#arcolinux-tweak-tool
-bindsym ctrl+alt+e exec arcolinux-tweak-tool     
-
-#File-Manager
-bindsym ctrl+alt+b exec thunar
-     
-#Catfish
-bindsym ctrl+alt+c exec catfish
-
-#Firefox
-bindsym ctrl+alt+f exec firefox
-
-#Pamac-manager
-bindsym ctrl+alt+p exec pamac-manager
-
-#Xfce4-settings-manager
-bindsym ctrl+alt+m exec xfce4-settings-manager
-
-#Pulse Audio Control
-bindsym ctrl+alt+u exec pavucontrol
-
-#Spotify
-#bindsym ctrl+alt+s exec spotify
-
-#Termite
-bindsym ctrl+alt+Return exec termite
-
-#Xfce4-appfinder
-bindsym ctrl+alt+a exec xfce4-appfinder
-
-#Wallpaper trash
-bindsym alt+t exec variety -t
-
-#Wallpaper next
-bindsym alt+n exec variety -n
-
-#Wallpaper previous
-bindsym alt+p exec variety -p
-
-#Wallpaper favorite
-bindsym alt+f exec variety -f
-
-#Wallpaper previous
-bindsym alt+Left exec variety -p
-
-#Wallpaper next
-bindsym alt + Right exec variety -n
-
-#Wallpaper toggle-pause
-bindsym alt+Up exec variety --toggle-pause
-
-#Wallpaper resume
-bindsym alt+Down exec variety --resume
-
-#Xfce4-appfinder
-bindsym alt+F3 exec xfce4-appfinder
-
-#xfce4-terminal dropdown
-bindsym F12 exec xfce4-terminal --drop-down
-
-#Screenshot
-bindsym $mod+Shift+s exec grim ~/Pictures/$(date '+%Y-%m-%d-%T')-screenshot.png
-
-
 #
 # Scratchpad:
-#  
+#
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
 
@@ -352,46 +199,20 @@ bindsym $mod+r mode "resize"
 
 #
 # Status Bar:
+#
 # Read `man 5 sway-bar` for more information about this section.
-
+bar {
+    position top
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    #status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-    #swaybar_command waybar
-    #workspace_buttons yes
-    
-
-bar {
-    position bottom
-    font "Terminus (TTF)"
-    #status_command while ~/.config/sway/scripts/sway_bar.sh; do sleep 1; done
-    swaybar_command waybar
+    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
     colors {
-
-    	background #000000AA
-    	statusline #ffffff
-    	inactive_workspace #323232AA #323232AA #5c5c5cAA
-
-        #background #2F2F2F
-        #statusline #eeeeee
-        #separator  #fdb95b
-
-        # colorclass           border  backgr. text
-        focused_workspace     #a9a9a9 #fdb95b #000000
-        active_workspace      #a9a9a9 #ffddaf #000000
-        inactive_workspace    #a9a9a9 #5f676a #eeeeee
-        urgent_workspace      #a9a9a9 #d42121 #eeeeee
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
 
-
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec autotiling
-exec numlockx on
 include /etc/sway/config.d/*
-
-
-
-

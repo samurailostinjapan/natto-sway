@@ -58,15 +58,10 @@ xfce4-terminal
 arcolinux-xfce-git
 arcolinux-local-xfce4-git
 sway
-i3status
 dmenu
 feh
 autotiling
 alacritty
-arcolinux-sway-git
-arcolinux-config-sway-git
-arcolinux-sway-dconf-git
-arcolinux-logout-git
 )
 
 count=0

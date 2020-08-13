@@ -1,3 +1,0 @@
-# natto-sway
-
-Sway Testing
